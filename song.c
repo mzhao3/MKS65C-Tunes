@@ -30,8 +30,8 @@ struct song_node * insert_order (struct song_node * head, char * new_artist, cha
   struct song_node * temp_prev = NULL;
   while(temp){
     printf("artistname: %s < %s\n",newSong->artist,temp->artist);
-    int comparison_name = strcmp(newSong->artist,temp->artist);
-    int comparison_artist = strcmp(newSong->name,temp->name);
+    int comparison_artist = strcmp(newSong->artist,temp->artist);
+    int comparison_name = strcmp(newSong->name,temp->name);
     if (comparison_artist < 0 || (comparison_artist == 0 && comparison_name < 0)) {
       if (head == temp) {
         newSong->next = temp;
@@ -59,19 +59,27 @@ void print_list (struct song_node * front) {
   }
   else {
     while (front -> next){
-      printf("%s: %s | ",front->name, front->artist);
+      printf("%s: %s | ",front->artist, front->name);
       front = front -> next;
     }
-    printf("%s: %s\n",front->name, front-> artist);
+    printf("%s: %s\n",front->artist, front-> name);
   }
 }
 
-/*
-
-struct song_node * get_song(char * name, char * artist ) {
+struct song_node * get_song(struct song_node * head, char * artist_name, char * song_name ) {
+  while (head) {
+    if (strcmp(head->artist,artist_name) == 0 &&
+        strcmp(head->name,song_name) == 0) {
+      return head;
+    }
+    else {
+      head = head->next;
+    }
+  }
   return NULL;
 }
 
+/*
 struct song_node * first_song(char * artist) {
   return NULL;
 }

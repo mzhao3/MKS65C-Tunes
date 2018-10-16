@@ -10,7 +10,7 @@ struct song_node * insert_order (struct song_node * head, char * name, char * ar
 
 void print_list (struct song_node * front);
 
-struct song_node * get_song(char * name, char * artist );
+struct song_node * get_song(struct song_node * head, char * artist_name, char * song_name );
 
 struct song_node * first_song(char * artist);
 
