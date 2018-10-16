@@ -11,7 +11,7 @@ struct song_node {
 };
 */
 
-struct song_node * insert_front (struct song_node * head, char* new_name, char* new_artist) {
+struct song_node * insert_front (struct song_node * head, char* new_artist, char* new_name) {
   struct song_node * newSong = (struct song_node *)malloc(sizeof(struct song_node));
   strcpy(newSong->name, new_name);
   strcpy(newSong->artist, new_artist);
@@ -19,7 +19,39 @@ struct song_node * insert_front (struct song_node * head, char* new_name, char* 
   return newSong;
 }
 
-struct song_node * insert_order (struct song_node * head, char * name, char * artist);
+struct song_node * insert_order (struct song_node * head, char * new_artist, char * new_name) {
+  if (!head) {
+    return insert_front(head,new_artist,new_name);
+  }
+  struct song_node * newSong = (struct song_node *)malloc(sizeof(struct song_node));
+  strcpy(newSong->name, new_name);
+  strcpy(newSong->artist, new_artist);
+  struct song_node * temp = head;
+  struct song_node * temp_prev = NULL;
+  while(temp){
+    printf("artistname: %s < %s\n",newSong->artist,temp->artist);
+    int comparison_name = strcmp(newSong->artist,temp->artist);
+    int comparison_artist = strcmp(newSong->name,temp->name);
+    if (comparison_artist < 0 || (comparison_artist == 0 && comparison_name < 0)) {
+      if (head == temp) {
+        newSong->next = temp;
+        return newSong;
+      }
+      else {
+        temp_prev->next = newSong;
+        newSong->next = temp;
+        return head;
+      }
+    }
+    else {
+      temp_prev = temp;
+      temp = temp->next;
+    }
+  }
+  temp_prev->next = newSong;
+  newSong->next = NULL;
+  return head;
+}
 
 void print_list (struct song_node * front) {
     if (!front){
@@ -27,10 +59,10 @@ void print_list (struct song_node * front) {
   }
   else {
     while (front -> next){
-      printf("%s : %s|",front->name, front->artist);
+      printf("%s: %s | ",front->name, front->artist);
       front = front -> next;
     }
-    printf("%s : %s\n",front->name, front-> artist);
+    printf("%s: %s\n",front->name, front-> artist);
   }
 }
 
