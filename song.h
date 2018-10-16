@@ -4,16 +4,16 @@ struct song_node {
   struct song_node *next;
 };
 
-struct song_node * insert_front (struct song_node * head, char* new_name, char* new_artist);
+struct song_node * insert_front (struct song_node *, char *, char *);
 
-struct song_node * insert_order (struct song_node * head, char * name, char * artist);
+struct song_node * insert_order (struct song_node *, char *, char *);
 
-void print_list (struct song_node * front);
+void print_list (struct song_node *);
 
-struct song_node * get_song(struct song_node * head, char * artist_name, char * song_name );
+struct song_node * find_node (struct song_node *, char *, char *);
 
-struct song_node * first_song(char * artist);
+struct song_node * find_artist (struct song_node *, char *);
 
-int remove_node (char * name, char * artist);
+int remove_node (char *, char *);
 
-struct song_node * free_list (struct song_node * start);
+struct song_node * free_list (struct song_node *);
