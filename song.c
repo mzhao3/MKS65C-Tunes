@@ -54,6 +54,9 @@ struct song_node * insert_order (struct song_node * head, char * new_artist, cha
 }
 
 void print_node (struct song_node * node) {
+  if (!node){
+    return;
+  }
   printf(" %s: %s ",node->artist,node->name);
 }
 
@@ -113,12 +116,30 @@ int list_length(struct song_node * head) {
   }
   return length;
 }
-/*
-int remove_node(char * name, char * artist) {
 
+int remove_node(struct song_node * head, char * artist_name, char * song_name) {
+  struct song_node * prev_node = NULL;
+  while(head){
+    if (strcmp(head->artist,artist_name) == 0 &&
+        strcmp(head->name,song_name) == 0) {
+      if (prev_node){
+        prev_node->next = head->next;
+        free(head);
+      }
+      else {
+
+      }
+      return 1;
+    }
+    else {
+      prev_node = head;
+      head = head->next;
+    }
+  }
   return 0;
 }
 
+/*
   struct song_node * free_list (struct song_node * start){
   return NULL;
   }

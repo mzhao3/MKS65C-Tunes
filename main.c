@@ -8,10 +8,10 @@ int main() {
 
   printf("Testing print_list\n");
   struct song_node * foo = insert_order(NULL,"guy","superman");
-  foo = insert_order(foo,"fran","medusa");
-  foo = insert_order(foo,"milk","water");
-  foo = insert_order(foo,"milk","bread");
-  foo = insert_order(foo,"milk","wechat");
+  //foo = insert_order(foo,"fran","medusa");
+  //foo = insert_order(foo,"milk","water");
+  //foo = insert_order(foo,"milk","bread");
+  //foo = insert_order(foo,"milk","wechat");
   print_list(foo);
   printf("\n");
   /*
@@ -39,6 +39,15 @@ int main() {
     print_node(randomThing);
     printf("\n");
   }
-
+  printf("Testing remove_node:\n");
+  int remove_num = remove_node(foo,"guy","superman");
+  if (remove_num){
+    printf("Yay you removed it\n");
+  }
+  else {
+    printf("Not found\n");
+  }
+  print_list(foo);
+  printf("\n");
   return 0;
 }
