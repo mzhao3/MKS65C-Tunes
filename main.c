@@ -2,8 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include "song.h"
+#include <time.h>
 
 int main() {
+
   printf("Testing print_list\n");
   struct song_node * foo = insert_order(NULL,"guy","superman");
   foo = insert_order(foo,"fran","medusa");
@@ -11,6 +13,8 @@ int main() {
   foo = insert_order(foo,"milk","bread");
   foo = insert_order(foo,"milk","wechat");
   print_list(foo);
+  printf("\n");
+  /*
   printf("\nTesting find_node\n");
   struct song_node * find = find_node(foo,"fran","medusa");
   if (find) {
@@ -21,10 +25,18 @@ int main() {
     printf("Song found: %s : %s\n",find2->artist,find2->name);
   }
   printf("Testing find_artist\n");
-  struct song_node * find_artist1 = find_artist(foo,"fra");
+  struct song_node * find_artist1 = find_artist(foo,"frax");
   if (find_artist1) {
     printf("Arist found: ");
     print_list(find_artist1);
+    printf("\n");
+  }
+  */
+  srand(time(NULL));
+  printf("Testing random_node:\n");
+  struct song_node * randomThing = random_node(foo);
+  if (randomThing){
+    print_node(randomThing);
     printf("\n");
   }
 

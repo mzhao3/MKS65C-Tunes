@@ -96,10 +96,28 @@ struct song_node * find_artist(struct song_node * head, char * artist_name) {
   return NULL;
 }
 
-/*
-  int remove_node (char * name, char * artist) {
-  return 0;
+struct song_node * random_node(struct song_node * head){
+  int randomIndex = rand() % list_length(head);
+  while(randomIndex){
+    head = head->next;
+    randomIndex--;
   }
+  return head;
+}
+
+int list_length(struct song_node * head) {
+  int length = 0;
+  while(head){
+    length++;
+    head = head->next;
+  }
+  return length;
+}
+/*
+int remove_node(char * name, char * artist) {
+
+  return 0;
+}
 
   struct song_node * free_list (struct song_node * start){
   return NULL;
