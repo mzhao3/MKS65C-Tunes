@@ -45,7 +45,7 @@ int main() {
   print_list(foo);
   printf("\n");
   */
-  foo = free_list(foo);
+  foo = free_list(foo->next->next);
   printf("------\n");
   print_list(foo);
   return 0;

@@ -148,5 +148,5 @@ struct song_node * free_list (struct song_node * head){
     original->next = NULL;
     free(original);
   }
-  return head;
+  return NULL;
 }
