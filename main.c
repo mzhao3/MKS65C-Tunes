@@ -8,10 +8,10 @@ int main() {
 
   printf("Testing print_list\n");
   struct song_node * foo = insert_order(NULL,"guy","superman");
-  //foo = insert_order(foo,"fran","medusa");
-  //foo = insert_order(foo,"milk","water");
-  //foo = insert_order(foo,"milk","bread");
-  //foo = insert_order(foo,"milk","wechat");
+  foo = insert_order(foo,"fran","medusa");
+  foo = insert_order(foo,"milk","water");
+  foo = insert_order(foo,"milk","bread");
+  foo = insert_order(foo,"milk","wechat");
   print_list(foo);
   printf("\n");
   /*
@@ -31,7 +31,7 @@ int main() {
     print_list(find_artist1);
     printf("\n");
   }
-  */
+
   srand(time(NULL));
   printf("Testing random_node:\n");
   struct song_node * randomThing = random_node(foo);
@@ -44,5 +44,9 @@ int main() {
 
   print_list(foo);
   printf("\n");
+  */
+  foo = free_list(foo);
+  printf("------\n");
+  print_list(foo);
   return 0;
 }
