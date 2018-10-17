@@ -20,6 +20,6 @@ struct song_node * random_node(struct song_node *);
 
 int list_length(struct song_node *);
 
-int remove_node(struct song_node *, char *, char *);
+struct song_node * remove_node(struct song_node *, char *, char *);
 
 struct song_node * free_list (struct song_node *);

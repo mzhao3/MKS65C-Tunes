@@ -40,13 +40,8 @@ int main() {
     printf("\n");
   }
   printf("Testing remove_node:\n");
-  int remove_num = remove_node(foo,"guy","superman");
-  if (remove_num){
-    printf("Yay you removed it\n");
-  }
-  else {
-    printf("Not found\n");
-  }
+  foo = remove_node(foo,"guy","superman");
+
   print_list(foo);
   printf("\n");
   return 0;

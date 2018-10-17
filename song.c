@@ -117,7 +117,7 @@ int list_length(struct song_node * head) {
   return length;
 }
 
-int remove_node(struct song_node * head, char * artist_name, char * song_name) {
+struct song_node * remove_node(struct song_node * head, char * artist_name, char * song_name) {
   struct song_node * prev_node = NULL;
   while(head){
     if (strcmp(head->artist,artist_name) == 0 &&
@@ -127,16 +127,18 @@ int remove_node(struct song_node * head, char * artist_name, char * song_name) {
         free(head);
       }
       else {
-        *head
+        struct song_node * next_node = head->next;
+        free(head);
+        return next_node;
       }
-      return 1;
+      return head;
     }
     else {
       prev_node = head;
       head = head->next;
     }
   }
-  return 0;
+  return head;
 }
 
 /*
