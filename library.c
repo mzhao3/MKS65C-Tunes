@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
-#include "linkedlist.h"
+#include "library.h"
 #include "song.h"
 
 
@@ -107,10 +107,9 @@ struct library * clear_library(struct library * lib) {
   int i = 0 ;
 
   while (i ++ < 27) {
-    (lib->table)[i] = free((lib->table)[i]);
-    //free((lib->table)[i]);
+    lib->table[i] = free_list((lib->table)[i]);
   }
-  free(lib);
   lib = NULL;
+  free(lib);
   return lib;
 }

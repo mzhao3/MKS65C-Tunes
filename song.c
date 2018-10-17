@@ -29,7 +29,6 @@ struct song_node * insert_order (struct song_node * head, char * new_artist, cha
   struct song_node * temp = head;
   struct song_node * temp_prev = NULL;
   while(temp){
-    printf("artistname: %s < %s\n",newSong->artist,temp->artist);
     int comparison_artist = strcmp(newSong->artist,temp->artist);
     int comparison_name = strcmp(newSong->name,temp->name);
     if (comparison_artist < 0 || (comparison_artist == 0 && comparison_name < 0)) {
@@ -71,6 +70,7 @@ void print_list (struct song_node * front) {
       front = front -> next;
     }
     print_node(front);
+    printf("\n");
   }
 }
 
