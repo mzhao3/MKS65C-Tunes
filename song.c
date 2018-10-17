@@ -127,7 +127,7 @@ int remove_node(struct song_node * head, char * artist_name, char * song_name) {
         free(head);
       }
       else {
-
+        *head
       }
       return 1;
     }
