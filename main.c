@@ -26,7 +26,7 @@ void test_artist(struct song_node * head){
 }
 
 void test_search_song(struct library * lib, char * artist, char * name){
-  struct song_node * song = search_song(artist,name,lib);
+  struct song_node * song = find(artist,name,lib);
   if (song){
     printf("song found! ");
     print_list(song);
@@ -135,7 +135,7 @@ int main() {
   print_letter(foo,'t');
   printf("\n======================\n\n");
 
-  printf("Testing search_song:\n");
+  printf("Testing find:\n");
   printf("Looking for [marshmello: alone]\n");
   test_search_song(foo,"marshmello","alone");
   printf("Looking for [ariana grande: god is a women]\n");
@@ -146,7 +146,7 @@ int main() {
   test_search_song(foo,"donald trump","sing not enough");
   printf("\n======================\n\n");
 
-  printf("Testing search_artist:\n");
+  printf("Testing find_artist:\n");
   printf("Looking for [taylor swift]\n");
   test_search_artist(foo,"taylor swift");
   printf("Looking for [maroon 5]\n");
@@ -157,11 +157,11 @@ int main() {
 
   printf("Testing delete_song:\n");
   printf("removing [taylor swift: bad blood]\n");
-  delete_song(foo,"taylor swift","bad blood");
+  remove_song(foo,"taylor swift","bad blood");
   print_library(foo);
   printf("\n");
   printf("removing [taylor swift: good blood] (doesn't exist)\n");
-  delete_song(foo,"taylor swift","good blood");
+  remove_song(foo,"taylor swift","good blood");
   print_library(foo);
   printf("\n======================\n\n");
 
@@ -174,6 +174,7 @@ int main() {
 
   struct song_node * bar3 = insert_order(NULL,"ariana grande","god is a women");
   bar3 = insert_order(bar3,"adele","hello");
+  bar3 = insert_order(bar3,"adele","goodbye");
   bar3 = insert_order(bar3,"marshmello","alone");
   bar3 = insert_order(bar3,"lil pump","gucci gang");
   bar3 = insert_order(bar3,"rick astley","never gonna give you up");
@@ -187,10 +188,11 @@ int main() {
   printf("\n======================\n\n");
 
   printf("Testing print_artist:\n");
-  printf("printing [taylor swift]");
-  print_artist("taylor swift",foo);
-  printf("printing [donald trump]");
+  printf("printing [adele]\n");
+  print_artist("adele",foo);
+  printf("\nprinting [donald trump]\n");
   print_artist("donald trump",foo);
+  printf("artist not found");
   printf("\n======================\n\n");
 
   printf("Testing shuffle:\n");

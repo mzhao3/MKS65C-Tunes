@@ -1,3 +1,5 @@
+#ifndef __song__
+#define __song__
 struct song_node {
   char name[100];
   char artist[100];
@@ -23,3 +25,4 @@ int list_length(struct song_node *);
 struct song_node * remove_node(struct song_node *, char *, char *);
 
 struct song_node * free_list (struct song_node *);
+#endif

@@ -47,7 +47,7 @@ struct song_node * search_artist(char * artist, struct library * lib) {
 
 }
 
-struct song_node * search_song(char * artist, char * name, struct library * lib) {
+struct song_node * find(char * artist, char * name, struct library * lib) {
   struct song_node * p = search_artist(artist, lib);
   if (!p) {
     return NULL;
@@ -69,12 +69,12 @@ void print_artist(char * artist, struct library * lib) {
   }
 
   struct song_node * p = (lib->table)[letter];
-  print_list(p);
   while (p) {
     //should print smthing if nothing is found?
     if (strcmp(p->artist, artist) == 0) {
+      printf("[");
       print_node(p);
-      printf("|");
+      printf("]\n");
     }
     p = p->next;
 
@@ -114,7 +114,7 @@ void shuffle(struct library * lib){
 
 }
 
-void delete_song(struct library * lib, char * artist, char * name) {
+void remove_song(struct library * lib, char * artist, char * name) {
   int letter = artist[0];
   if (97 <= letter && letter <= 122) {
     letter -= 97;

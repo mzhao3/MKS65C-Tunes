@@ -144,6 +144,9 @@ struct song_node * remove_node(struct song_node * head, char * artist_name, char
 struct song_node * free_list (struct song_node * head){
   while(head) {
     struct song_node * original = head;
+    printf("freeing node: ");
+    print_node(head);
+    printf("\n");
     head = head->next;
     original->next = NULL;
     free(original);
