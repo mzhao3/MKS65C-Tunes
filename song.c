@@ -61,7 +61,7 @@ void print_node (struct song_node * node) {
 
 void print_list (struct song_node * front) {
   if (!front){
-    printf("|\n");
+    printf("\n");
   }
   else {
     while (front -> next){
@@ -119,6 +119,7 @@ int list_length(struct song_node * head) {
 
 struct song_node * remove_node(struct song_node * head, char * artist_name, char * song_name) {
   struct song_node * prev_node = NULL;
+  struct song_node * beginning = head;
   while(head){
     if (strcmp(head->artist,artist_name) == 0 &&
         strcmp(head->name,song_name) == 0) {
@@ -131,14 +132,14 @@ struct song_node * remove_node(struct song_node * head, char * artist_name, char
         free(head);
         return next_node;
       }
-      return head;
+      return beginning;
     }
     else {
       prev_node = head;
       head = head->next;
     }
   }
-  return head;
+  return beginning;
 }
 
 struct song_node * free_list (struct song_node * head){

@@ -12,6 +12,8 @@ void print_artist(char * , struct library * );
 
 void print_library(struct library *);
 
+void print_letter(struct library *, char);
+
 void shuffle(struct library * );
 
 void delete_song(struct song_node *, struct library * );

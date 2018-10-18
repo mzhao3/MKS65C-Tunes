@@ -16,7 +16,7 @@ struct library * make_lib() {
 }
 
 struct library * add_song(struct song_node * new_song, struct library * lib) {
-  int letter = (new_song->name)[0];
+  int letter = (new_song->artist)[0];
 
   if (97 <= letter && letter <= 122) {
     (lib->table)[letter - 97] = insert_order( (lib->table)[letter - 97], new_song->artist, new_song->name );
@@ -29,16 +29,19 @@ struct library * add_song(struct song_node * new_song, struct library * lib) {
 
 struct song_node * search_artist(char * artist, struct library * lib) {
   int letter = artist[0];
-  if (97 <= letter && letter <= 122) letter -= 97;
-  else letter = 26;
+  if (97 <= letter && letter <= 122) {
+    letter -= 97;
+  }
+  else {
+    letter = 26;
+  }
 
-  struct song_node * p = (lib->table)[letter];
-  if ( p != NULL) {
-    //should print smthing if nothing is found?
-    if (strcmp(p->artist, artist) == 0)
+  struct song_node * p = lib->table[letter];
+  while (p) {
+    if (strcmp(p->artist, artist) == 0){
       return p;
+    }
     p = p->next;
-
   }
   return NULL;
 
@@ -46,8 +49,12 @@ struct song_node * search_artist(char * artist, struct library * lib) {
 
 struct song_node * search_song(char * artist, char * name, struct library * lib) {
   struct song_node * p = search_artist(artist, lib);
-  if (strcmp(p->name, name) == 0)
+  if (!p) {
+    return NULL;
+  }
+  if (strcmp(p->name, name) == 0){
     return p;
+  }
   p = p->next;
   return NULL;
 }
@@ -72,18 +79,23 @@ void print_artist(char * artist, struct library * lib) {
 }
 
 void print_library(struct library * lib) {
-    if (lib != NULL) {
-      printf("~~===============LIBRARY===============~~\n");
-      int i;
-      while (i ++ < 26) {
-        if ((lib->table)[i]!=NULL) {
-          printf("%c\n", 97 + i);
-          print_list( (lib-> table)[i] );
-        }
+  if (lib != NULL) {
+    printf("~~===============LIBRARY===============~~\n");
+    int i = 0;
+    while (i < 26) {
+      if (lib->table[i]!=NULL) {
+        printf("%c list\n", 97 + i);
+        print_list( (lib-> table)[i] );
       }
-      if ((lib->table)[26] != NULL)
-        print_list( (lib->table)[26]);
+      i++;
     }
+    if ((lib->table)[26] != NULL)
+      print_list( (lib->table)[26]);
+  }
+}
+
+void print_letter(struct library * lib, char c){
+  print_list(lib->table[c-97]);
 }
 
 void shuffle(struct library * lib){
