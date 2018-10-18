@@ -36,6 +36,17 @@ void test_search_song(struct library * lib, char * artist, char * name){
   }
 }
 
+void test_search_artist(struct library * lib, char * artist) {
+  struct song_node * song = search_artist(artist,lib);
+  if (song) {
+    printf("artist found! ");
+    print_list(song);
+  }
+  else {
+    printf("song not found\n");
+  }
+}
+
 int main() {
   srand(time(NULL));
   struct song_node * bar = insert_order(NULL,"maroon 5","girls like you");
@@ -135,6 +146,14 @@ int main() {
   test_search_song(foo,"donald trump","sing not enough");
   printf("\n======================\n\n");
 
+  printf("Testing search_artist:\n");
+  printf("Looking for [taylor swift]\n");
+  test_search_artist(foo,"taylor swift");
+  printf("Looking for [maroon 5]\n");
+  test_search_artist(foo,"maroon 5");
+  printf("Looking for [harry styles]\n");
+  test_search_artist(foo,"harry styles");
+  printf("\n======================\n\n");
 
   return 0;
 }
