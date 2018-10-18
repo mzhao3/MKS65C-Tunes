@@ -80,7 +80,6 @@ void print_artist(char * artist, struct library * lib) {
 
 void print_library(struct library * lib) {
   if (lib != NULL) {
-    printf("~~===============LIBRARY===============~~\n");
     int i = 0;
     while (i < 26) {
       if (lib->table[i]!=NULL) {
@@ -99,27 +98,38 @@ void print_letter(struct library * lib, char c){
 }
 
 void shuffle(struct library * lib){
-  int i;
-  for (i = 0; i < rand() % 10; i++) {
-    print_node( random_node( (lib->table)[rand()%27]) ) ;
+  int random_length = rand() % 10 + 3;
+  int current_length = 0;
+  while (random_length != current_length) {
+    struct song_node * random_song = (lib->table)[rand()%27];
+    if (random_song){
+      print_node(random_node(random_song));
+      printf("\n");
+      current_length++;
+    }
   }
 
 }
 
-void delete_song(struct song_node * song, struct library * lib) {
-  int letter = (song->name)[0];
-  if (97 <= letter && letter <= 122) letter -= 97;
-  else letter = 26;
+void delete_song(struct library * lib, char * artist, char * name) {
+  int letter = artist[0];
+  if (97 <= letter && letter <= 122) {
+    letter -= 97;
+  }
+  else {
+    letter = 26;
+  }
 
-  remove_node((lib->table)[letter], song->artist, song->name);
+  lib->table[letter] = remove_node((lib->table)[letter], artist, name);
 
 }
 
 struct library * clear_library(struct library * lib) {
   int i = 0 ;
 
-  while (i ++ < 27) {
+  while (i < 27) {
     lib->table[i] = free_list((lib->table)[i]);
+    i++;
   }
   lib = NULL;
   free(lib);

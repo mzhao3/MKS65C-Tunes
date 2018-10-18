@@ -155,5 +155,38 @@ int main() {
   test_search_artist(foo,"harry styles");
   printf("\n======================\n\n");
 
+  printf("Testing delete_song:\n");
+  printf("removing [taylor swift: bad blood]\n");
+  delete_song(foo,"taylor swift","bad blood");
+  print_library(foo);
+  printf("\n");
+  printf("removing [taylor swift: good blood] (doesn't exist)\n");
+  delete_song(foo,"taylor swift","good blood");
+  print_library(foo);
+  printf("\n======================\n\n");
+
+  printf("Testing clear_library:\n");
+  clear_library(foo);
+  print_library(foo);
+  printf("\n\nLibrary after clear:");
+  printf("\n======================\n\n");
+  printf("adding songs to empty library:\n");
+
+  struct song_node * bar3 = insert_order(NULL,"ariana grande","god is a women");
+  bar3 = insert_order(bar3,"adele","hello");
+  bar3 = insert_order(bar3,"marshmello","alone");
+  bar3 = insert_order(bar3,"lil pump","gucci gang");
+  bar3 = insert_order(bar3,"rick astley","never gonna give you up");
+
+  while (bar3){
+    add_song(bar3,foo);
+    bar3 = bar3->next;
+  }
+
+  print_library(foo);
+  printf("\n======================\n\n");
+
+  printf("Testing shuffle:\n");
+  shuffle(foo);
   return 0;
 }

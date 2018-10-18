@@ -16,6 +16,6 @@ void print_letter(struct library *, char);
 
 void shuffle(struct library * );
 
-void delete_song(struct song_node *, struct library * );
+void delete_song(struct library *, char *, char *);
 
 struct library * clear_library(struct library *);

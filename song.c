@@ -64,12 +64,11 @@ void print_list (struct song_node * front) {
     printf("\n");
   }
   else {
-    while (front -> next){
+    while (front){
       print_node(front);
       printf("|");
       front = front -> next;
     }
-    print_node(front);
     printf("\n");
   }
 }
