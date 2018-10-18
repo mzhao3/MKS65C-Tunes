@@ -186,7 +186,15 @@ int main() {
   print_library(foo);
   printf("\n======================\n\n");
 
+  printf("Testing print_artist:\n");
+  printf("printing [taylor swift]");
+  print_artist("taylor swift",foo);
+  printf("printing [donald trump]");
+  print_artist("donald trump",foo);
+  printf("\n======================\n\n");
+
   printf("Testing shuffle:\n");
   shuffle(foo);
+  printf("\n======================\n\n");
   return 0;
 }

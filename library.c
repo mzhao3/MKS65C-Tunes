@@ -59,15 +59,18 @@ struct song_node * search_song(char * artist, char * name, struct library * lib)
   return NULL;
 }
 
-
-
 void print_artist(char * artist, struct library * lib) {
   int letter = artist[0];
-  if (97 <= letter && letter <= 122) letter -= 97;
-  else letter = 26;
+  if (97 <= letter && letter <= 122) {
+    letter -= 97;
+  }
+  else {
+    letter = 26;
+  }
 
   struct song_node * p = (lib->table)[letter];
-  if ( p != NULL) {
+  print_list(p);
+  while (p) {
     //should print smthing if nothing is found?
     if (strcmp(p->artist, artist) == 0) {
       print_node(p);
